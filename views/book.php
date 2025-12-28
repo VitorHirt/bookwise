@@ -1,5 +1,6 @@
 <?php 
-   $views = "book_book";
+    require_once __DIR__ . '/../route/web.php';
+    $views = 'book_book';
 ?>
 
 <section class="d-flex justify-content-center gap-2 mt-5 flex-wrap">
