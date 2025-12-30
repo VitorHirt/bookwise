@@ -4,10 +4,8 @@
     $uri = str_replace('.php', '', $uri);
     $uri = explode('/', $uri);
    
-    $is_controller = array_find($uri, function (string $value) {
-        return str_starts_with($value, 'controller');
-    });
-
+    $is_controller = $uri[1] == 'controller'? true : false;
+    
     if ($is_controller) {
         $uri = $_SERVER["REQUEST_URI"] = '/views/home.php';
         $uri = str_replace('.php', '', $uri);
