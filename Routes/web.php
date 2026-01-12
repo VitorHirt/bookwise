@@ -1,13 +1,35 @@
 <?php
 
-use App\Controller\Client\HomeController;
 use Model\Database;
+use Functions;
 
-function routes($module, $controller)
+function routes(string $module, string $controller, string $action = 'index')
 {
-    include BASE_PATH . "App/Controller/{$module}/{$controller}.php";
+    $path = BASE_PATH . "App/Controller/{$module}/{$controller}.php";
+
+    if (!file_exists($path)) {
+        http_response_code(404);
+        exit('Controller não encontrado');
+    }
+
+    require_once $path;
+
+    $class = "App\\Controller\\{$module}\\{$controller}";
+
+    if (!class_exists($class)) {
+        http_response_code(500);
+        exit('Classe não encontrada');
+    }
+
     $helpers = new Functions();
     $db = new Database();
-    $action = new HomeController($helpers, $db);
-    $action->index();
+
+    $instance = new $class($helpers, $db);
+
+    if (!method_exists($instance, $action)) {
+        http_response_code(404);
+        exit('Método não encontrado');
+    }
+
+    $instance->$action();
 }

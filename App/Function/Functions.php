@@ -59,24 +59,19 @@ class Functions
         return $img;
     }
 
-
     public function notFound(): String
     {
         return BASE_PATH . "Resources/Views/404/NotFound.php";
     }
 
-    public function findByAuthor(string $author): array
+    public function route(string $module, string $controller, string $action = 'index', array $params = []): string
     {
-        $db = new PDO('sqlite:' . __DIR__ . '/database.sqlite');
+        $query = array_merge([
+            'module' => $module,
+            'controller' => $controller,
+            'action' => $action
+        ], $params);
 
-        $stmt = $db->prepare(
-            "SELECT * FROM books WHERE author LIKE :author"
-        );
-
-        $stmt->execute([
-            ':author' => "%$author%"
-        ]);
-
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return '/index.php?' . http_build_query($query);
     }
 }

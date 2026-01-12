@@ -2,8 +2,12 @@
 
 $helpers = new Functions();
 $header = $helpers->include("client.layout.partial.header");
-$content = $helpers->include("client.index");
 $title = $helpers->title('Bookwise');
+$content = $helpers->include("client.index");
+
+if($bookView){  
+    $content = $helpers->include("client.book");
+}
 
 ?>
 

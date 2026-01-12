@@ -3,7 +3,7 @@ $helpers = new Functions();
 ?>
 
 <div class="container">
-    <form action="<?php echo $helpers->findByAuthor('teste') ?>" method="GET" class="d-flex mt-3 mb-3" role="search">
+    <form action="<?php ?>" method="GET" class="d-flex mt-3 mb-3" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
         <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
     </form>
@@ -14,7 +14,7 @@ $helpers = new Functions();
                 <div class="card-body">
                     <h5 class="card-title"><?= $value['title'] ?></h5>
                     <p class="card-text"><?= $value['description'] ?></p>
-                    <a href="#" class="btn btn-primary w-100">Go somewhere</a>
+                    <a href="<?= $helpers->route('Client', 'BookController', 'index', ['id' => $value['id']]) ?>" class="btn btn-primary w-100">Go somewhere</a>
                 </div>
             </div>
         <?php endforeach ?>
