@@ -90,6 +90,43 @@
     z-index: 2;
 }
 
+.bw-fav-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.55);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    transition: all 0.2s ease;
+    z-index: 3;
+}
+
+.bw-fav-btn i {
+    font-size: 14px;
+    line-height: 1;
+}
+
+.bw-fav-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.05);
+}
+
+.bw-fav-btn.active {
+    background: rgba(255, 77, 77, 0.18);
+}
+
+.bw-fav-btn.active i {
+    color: #ff4d4d;
+}
+
 @media (max-width: 1200px) {
     .bw-book-grid {
         grid-template-columns: repeat(3, minmax(180px, 1fr));
