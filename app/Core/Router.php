@@ -2,22 +2,18 @@
 
 namespace App\Core;
 
-class Router
-{
+class Router {
     private array $routes = [];
 
-    public function get(string $uri, array $action): void
-    {
+    public function get(string $uri, array $action): void {
         $this->routes['GET'][$uri] = $action;
     }
 
-    public function post(string $uri, array $action): void
-    {
+    public function post(string $uri, array $action): void {
         $this->routes['POST'][$uri] = $action;
     }
 
-    public function dispatch(): void
-    {
+    public function dispatch(): void {
         $method = $_SERVER['REQUEST_METHOD'];
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 

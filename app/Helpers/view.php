@@ -1,5 +1,7 @@
 <?php
 
+use App\Core\View;
+
 function view(string $view, string $module, array $data = [], string $layout = 'layouts.app'): void {
     $base = BASE_PATH . '/resources/views/';
 
@@ -23,5 +25,9 @@ function view(string $view, string $module, array $data = [], string $layout = '
     require $viewFile;
     $content = ob_get_clean(); // Captura o conteúdo da view
 
-    require $layoutFile; /* O layout deve usar <?= $content ?> */
+    ob_start();
+    require $layoutFile;
+    $layoutContent = ob_get_clean();
+
+    echo View::renderStacks($layoutContent);
 }

@@ -1,0 +1,122 @@
+.bw-bookstore-page {
+    min-height: 100vh;
+    background: #000;
+    color: #fff;
+    padding: 42px 48px 40px 92px;
+    overflow: hidden;
+}
+
+.bw-bookstore-header {
+    margin-bottom: 42px;
+}
+
+.bw-bookstore-title {
+    font-size: 34px;
+    line-height: 1.1;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.bw-bookstore-subtitle {
+    font-size: 15px;
+    color: #b9b9b9;
+    margin: 0;
+}
+
+.bw-book-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(180px, 1fr));
+    gap: 34px 28px;
+    align-items: start;
+}
+
+.bw-book-card {
+    transition: transform 0.22s ease, opacity 0.22s ease;
+}
+
+.bw-book-card.is-hovered,
+.bw-book-card:hover {
+    transform: translateY(-4px);
+}
+
+.bw-book-cover {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 6;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #111;
+    margin-bottom: 12px;
+}
+
+.bw-book-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.bw-book-card:hover .bw-book-cover img {
+    transform: scale(1.03);
+}
+
+.bw-book-author {
+    display: block;
+    font-size: 11px;
+    color: #8d8d8d;
+    margin-bottom: 3px;
+}
+
+.bw-book-name {
+    font-size: 18px;
+    font-weight: 400;
+    color: #fff;
+    margin: 0;
+    line-height: 1.3;
+}
+
+.bw-book-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #d6df79;
+    color: #1f1f1f;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 999px;
+    z-index: 2;
+}
+
+@media (max-width: 1200px) {
+    .bw-book-grid {
+        grid-template-columns: repeat(3, minmax(180px, 1fr));
+    }
+}
+
+@media (max-width: 992px) {
+    .bw-bookstore-page {
+        padding: 32px 24px 32px 82px;
+    }
+
+    .bw-book-grid {
+        grid-template-columns: repeat(2, minmax(180px, 1fr));
+    }
+}
+
+@media (max-width: 576px) {
+    .bw-bookstore-page {
+        padding: 24px 16px 24px 70px;
+    }
+
+    .bw-bookstore-title {
+        font-size: 28px;
+    }
+
+    .bw-book-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}
