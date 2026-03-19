@@ -20,6 +20,12 @@
                 </div>
                 <span class="bw-book-author">Joe Dever</span>
                 <h3 class="bw-book-name">Flight from the Dark</h3>
+
+                <div class="bw-book-stats">
+                    <span class="bw-book-stat"><i class="bi bi-eye"></i> 12.4k views</span>
+                    <span class="bw-book-stat"><i class="bi bi-download"></i> 3.1k downloads</span>
+                    <span class="bw-book-stat"><i class="bi bi-star"></i> 4.8 rating</span>
+                </div>
             </article>
 
             <article class="bw-book-card">
@@ -33,6 +39,12 @@
                 </div>
                 <span class="bw-book-author">Jaxon Pryde</span>
                 <h3 class="bw-book-name">Echoes of the Void</h3>
+
+                <div class="bw-book-stats">
+                    <span class="bw-book-stat"><i class="bi bi-eye"></i> 8.9k views</span>
+                    <span class="bw-book-stat"><i class="bi bi-download"></i> 2.4k downloads</span>
+                    <span class="bw-book-stat"><i class="bi bi-bookmark-check"></i> 1.2k saves</span>
+                </div>
             </article>
 
             <article class="bw-book-card">
@@ -45,6 +57,12 @@
                 </div>
                 <span class="bw-book-author">Corvin Dabrowski</span>
                 <h3 class="bw-book-name">Time Fracture</h3>
+
+                <div class="bw-book-stats">
+                    <span class="bw-book-stat"><i class="bi bi-eye"></i> 15.7k views</span>
+                    <span class="bw-book-stat"><i class="bi bi-download"></i> 4.2k downloads</span>
+                    <span class="bw-book-stat"><i class="bi bi-star"></i> 4.9 rating</span>
+                </div>
             </article>
 
             <article class="bw-book-card">
@@ -57,6 +75,12 @@
                 </div>
                 <span class="bw-book-author">Liora Plexis</span>
                 <h3 class="bw-book-name">Hive of Dreams</h3>
+
+                <div class="bw-book-stats">
+                    <span class="bw-book-stat"><i class="bi bi-eye"></i> 6.8k views</span>
+                    <span class="bw-book-stat"><i class="bi bi-download"></i> 1.9k downloads</span>
+                    <span class="bw-book-stat"><i class="bi bi-star"></i> 4.6 rating</span>
+                </div>
             </article>
 
             <article class="bw-book-card">
@@ -69,6 +93,12 @@
                 </div>
                 <span class="bw-book-author">Rylan Skye</span>
                 <h3 class="bw-book-name">City of Ashes</h3>
+
+                <div class="bw-book-stats">
+                    <span class="bw-book-stat"><i class="bi bi-eye"></i> 11.1k views</span>
+                    <span class="bw-book-stat"><i class="bi bi-download"></i> 2.8k downloads</span>
+                    <span class="bw-book-stat"><i class="bi bi-bookmark-check"></i> 980 saves</span>
+                </div>
             </article>
 
             <article class="bw-book-card">
@@ -81,6 +111,12 @@
                 </div>
                 <span class="bw-book-author">Evelyn Hart</span>
                 <h3 class="bw-book-name">Golden Kingdom</h3>
+
+                <div class="bw-book-stats">
+                    <span class="bw-book-stat"><i class="bi bi-eye"></i> 9.6k views</span>
+                    <span class="bw-book-stat"><i class="bi bi-download"></i> 3.7k downloads</span>
+                    <span class="bw-book-stat"><i class="bi bi-star"></i> 4.7 rating</span>
+                </div>
             </article>
 
             <article class="bw-book-card">
@@ -93,6 +129,12 @@
                 </div>
                 <span class="bw-book-author">Nael Orson</span>
                 <h3 class="bw-book-name">Silent Horizon</h3>
+
+                <div class="bw-book-stats">
+                    <span class="bw-book-stat"><i class="bi bi-eye"></i> 7.3k views</span>
+                    <span class="bw-book-stat"><i class="bi bi-download"></i> 2.1k downloads</span>
+                    <span class="bw-book-stat"><i class="bi bi-bookmark-check"></i> 860 saves</span>
+                </div>
             </article>
 
             <article class="bw-book-card">
@@ -105,37 +147,19 @@
                 </div>
                 <span class="bw-book-author">Selene Voss</span>
                 <h3 class="bw-book-name">Moonlit Tower</h3>
+
+                <div class="bw-book-stats">
+                    <span class="bw-book-stat"><i class="bi bi-eye"></i> 13.2k views</span>
+                    <span class="bw-book-stat"><i class="bi bi-download"></i> 4.5k downloads</span>
+                    <span class="bw-book-stat"><i class="bi bi-star"></i> 4.9 rating</span>
+                </div>
             </article>
         </div>
     </section>
 <?php endsection(); ?>
 
 <?php push('scripts'); ?>
-    <script>
-        $(function () {
-            $('.bw-book-card').on('mouseenter', function () {
-                $(this).addClass('is-hovered');
-            }).on('mouseleave', function () {
-                $(this).removeClass('is-hovered');
-            });
-
-            $(document).on('click', '.bw-fav-btn', function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-
-                const $button = $(this);
-                const $icon = $button.find('i');
-
-                $button.toggleClass('active');
-
-                if ($button.hasClass('active')) {
-                    $icon.removeClass('bi-heart').addClass('bi-heart-fill');
-                } else {
-                    $icon.removeClass('bi-heart-fill').addClass('bi-heart');
-                }
-            });
-        });
-    </script>
+    <script src="<?= asset('assets/view/client/home/home.js') ?>"></script>
 <?php endpush(); ?>
 
 <?php push('styles'); ?>

@@ -6,30 +6,160 @@
     </div>
 
     <div class="bw-sidebar-center">
-        <a href="#" class="bw-sidebar-link active" title="Bookstore">
+        <a href="<?= BASE_URL ?>/" class="bw-sidebar-link active" title="Bookstore">
             <i class="bi bi-columns-gap"></i>
         </a>
 
-        <a href="#" class="bw-sidebar-link" title="Library">
+        <a href="<?= BASE_URL ?>/book" class="bw-sidebar-link" title="Library">
             <i class="bi bi-book"></i>
         </a>
 
-        <a href="#" class="bw-sidebar-link" title="Saved">
+        <a href="<?= BASE_URL ?>/save" class="bw-sidebar-link" title="Saved">
             <i class="bi bi-bookmark-check"></i>
         </a>
     </div>
 
     <div class="bw-sidebar-bottom">
-        <a href="#" class="bw-sidebar-link" title="Notifications">
+        <button type="button" class="bw-sidebar-link bw-sidebar-action" title="Notifications" data-bs-toggle="offcanvas" data-bs-target="#bwNotificationsDrawer" aria-controls="bwNotificationsDrawer">
             <i class="bi bi-bell"></i>
-        </a>
+            <span class="bw-sidebar-dot">3</span>
+        </button>
 
-        <a href="#" class="bw-sidebar-avatar" title="Perfil">
-            <img src="https://i.pravatar.cc/40?img=12" alt="Avatar do usuário">
-        </a>
+        <div class="bw-sidebar-profile" data-profile-card>
+            <a href="#" class="bw-sidebar-avatar" title="Perfil" data-profile-trigger>
+                <img src="https://i.pravatar.cc/80?img=12" alt="Avatar do usuário">
+            </a>
+
+            <div class="bw-profile-card" data-profile-panel>
+                <div class="bw-profile-card-header">
+                    <img class="bw-profile-card-avatar" src="https://i.pravatar.cc/80?img=12" alt="Avatar do usuário">
+
+                    <div class="bw-profile-card-meta">
+                        <div class="bw-profile-card-topline">
+                            <strong class="bw-profile-card-name">Max Smith</strong>
+                            <span class="bw-profile-card-badge">Pro</span>
+                        </div>
+
+                        <span class="bw-profile-card-mail">max@kt.com</span>
+                    </div>
+                </div>
+
+                <div class="bw-profile-card-section">
+                    <a href="#" class="bw-profile-card-link">My Profile</a>
+                    <a href="#" class="bw-profile-card-link">
+                        <span>My Projects</span>
+                        <span class="bw-profile-card-pill">3</span>
+                    </a>
+                    <a href="#" class="bw-profile-card-link">
+                        <span>My Subscription</span>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                    <a href="#" class="bw-profile-card-link">My Statements</a>
+                </div>
+
+                <div class="bw-profile-card-section">
+                    <a href="#" class="bw-profile-card-link">
+                        <span>Mode</span>
+                        <i class="bi bi-brightness-high"></i>
+                    </a>
+                    <a href="#" class="bw-profile-card-link">
+                        <span>Language</span>
+                        <span class="bw-profile-card-language">English <span>US</span></span>
+                    </a>
+                    <a href="#" class="bw-profile-card-link">Account Settings</a>
+                    <a href="#" class="bw-profile-card-link bw-profile-card-link-danger">Sign Out</a>
+                </div>
+            </div>
+        </div>
     </div>
 </aside>
 
+<?php section('drawer'); ?>
+    <div class="offcanvas offcanvas-end bw-notification-drawer" tabindex="-1" id="bwNotificationsDrawer" aria-labelledby="bwNotificationsDrawerLabel">
+        <div class="offcanvas-header bw-notification-header">
+            <div>
+                <span class="bw-notification-kicker">Activity</span>
+                <h5 class="offcanvas-title bw-notification-title" id="bwNotificationsDrawerLabel">Notifications</h5>
+            </div>
+
+            <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+
+        <div class="offcanvas-body bw-notification-body">
+            <div class="bw-notification-toolbar">
+                <span class="bw-notification-counter">3 new updates</span>
+                <button type="button" class="bw-notification-clear" data-notification-clear>Mark all as read</button>
+            </div>
+
+            <div class="bw-notification-list">
+                <article class="bw-notification-card is-new">
+                    <div class="bw-notification-icon">
+                        <i class="bi bi-bookmark-heart"></i>
+                    </div>
+
+                    <div class="bw-notification-copy">
+                        <p class="bw-notification-text"><strong>Echoes of the Void</strong> reached 1.2k saves.</p>
+                        <span class="bw-notification-time">2 minutes ago</span>
+                    </div>
+
+                    <button type="button" class="bw-notification-dismiss" data-notification-dismiss aria-label="Dismiss notification">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </article>
+
+                <article class="bw-notification-card is-new">
+                    <div class="bw-notification-icon">
+                        <i class="bi bi-download"></i>
+                    </div>
+
+                    <div class="bw-notification-copy">
+                        <p class="bw-notification-text"><strong>Flight from the Dark</strong> got 250 new downloads today.</p>
+                        <span class="bw-notification-time">18 minutes ago</span>
+                    </div>
+
+                    <button type="button" class="bw-notification-dismiss" data-notification-dismiss aria-label="Dismiss notification">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </article>
+
+                <article class="bw-notification-card is-new">
+                    <div class="bw-notification-icon">
+                        <i class="bi bi-star"></i>
+                    </div>
+
+                    <div class="bw-notification-copy">
+                        <p class="bw-notification-text"><strong>Moonlit Tower</strong> received a new 5-star rating.</p>
+                        <span class="bw-notification-time">1 hour ago</span>
+                    </div>
+
+                    <button type="button" class="bw-notification-dismiss" data-notification-dismiss aria-label="Dismiss notification">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </article>
+
+                <article class="bw-notification-card">
+                    <div class="bw-notification-icon">
+                        <i class="bi bi-check2-circle"></i>
+                    </div>
+
+                    <div class="bw-notification-copy">
+                        <p class="bw-notification-text">Your last sync with the library completed successfully.</p>
+                        <span class="bw-notification-time">Yesterday</span>
+                    </div>
+
+                    <button type="button" class="bw-notification-dismiss" data-notification-dismiss aria-label="Dismiss notification">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </article>
+            </div>
+        </div>
+    </div>
+<?php endsection(); ?>
+
 <?php push('styles'); ?>
     <link rel="stylesheet" href="<?= asset('assets/view/client/sidebar/sidebar.css') ?>">
+<?php endpush(); ?>
+
+<?php push('scripts'); ?>
+    <script src="<?= asset('assets/view/client/sidebar/sidebar.js') ?>"></script>
 <?php endpush(); ?>

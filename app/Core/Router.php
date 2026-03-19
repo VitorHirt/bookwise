@@ -21,7 +21,7 @@ class Router {
 
         if (!$action) {
             http_response_code(404);
-            echo '404 - Página não encontrada';
+            $this->renderView('404/404');
             return;
         }
 
@@ -29,5 +29,37 @@ class Router {
 
         $instance = new $controller();
         $instance->$method();
+    }
+
+    private function renderView(string $view, ?string $layout = null, array $data = []): void {
+        $base = BASE_PATH . '/resources/views/';
+        $viewFile = $base . str_replace('.', '/', $view) . '.php';
+
+        if (!file_exists($viewFile)) {
+            throw new \RuntimeException('View não encontrada para renderização.');
+        }
+
+        extract($data);
+
+        if ($layout === null) {
+            require $viewFile;
+            return;
+        }
+
+        $layoutFile = $base . str_replace('.', '/', $layout) . '.php';
+
+        if (!file_exists($layoutFile)) {
+            throw new \RuntimeException('Layout não encontrado para renderização.');
+        }
+
+        ob_start();
+        require $viewFile;
+        ob_end_clean();
+
+        ob_start();
+        require $layoutFile;
+        $layoutContent = ob_get_clean();
+
+        echo View::renderStacks($layoutContent);
     }
 }
