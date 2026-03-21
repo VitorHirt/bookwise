@@ -13,7 +13,7 @@ $(function () {
 
         const $profile = $(this).closest('[data-profile-card]');
         $('[data-profile-card]').not($profile).removeClass('is-open');
-        $profile.toggleClass('is-open');
+        $profile.addClass('is-open');
     });
 
     $(document).on('click', function (e) {

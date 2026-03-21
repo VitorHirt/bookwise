@@ -6,15 +6,15 @@
     </div>
 
     <div class="bw-sidebar-center">
-        <a href="<?= BASE_URL ?>/" class="bw-sidebar-link active" title="Bookstore">
+        <a href="<?= route('client.home') ?>" class="bw-sidebar-link <?= route_is('client.home') ? 'active' : '' ?>" title="Bookstore">
             <i class="bi bi-columns-gap"></i>
         </a>
 
-        <a href="<?= BASE_URL ?>/book" class="bw-sidebar-link" title="Library">
+        <a href="<?= route('client.book') ?>" class="bw-sidebar-link <?= route_is('client.book') ? 'active' : '' ?>" title="Library">
             <i class="bi bi-book"></i>
         </a>
 
-        <a href="<?= BASE_URL ?>/save" class="bw-sidebar-link" title="Saved">
+        <a href="<?= route('client.favorite') ?>" class="bw-sidebar-link <?= route_is('client.favorite') ? 'active' : '' ?>" title="Saved">
             <i class="bi bi-bookmark-check"></i>
         </a>
     </div>

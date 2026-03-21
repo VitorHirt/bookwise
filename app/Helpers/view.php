@@ -1,5 +1,7 @@
 <?php
 
+use App\Core\RedirectResponse;
+use App\Core\Route;
 use App\Core\View;
 
 function view(string $view, string $module, array $data = [], string $layout = 'layouts.app'): void {
@@ -30,4 +32,16 @@ function view(string $view, string $module, array $data = [], string $layout = '
     $layoutContent = ob_get_clean();
 
     echo View::renderStacks($layoutContent);
+}
+
+function redirect(): RedirectResponse {
+    return new RedirectResponse();
+}
+
+function route(string $name): string {
+    return Route::route($name);
+}
+
+function route_is(string|array $patterns): bool {
+    return Route::is($patterns);
 }

@@ -110,6 +110,15 @@
     position: relative;
 }
 
+.bw-sidebar-profile::after {
+    content: "";
+    position: absolute;
+    left: 100%;
+    bottom: -18px;
+    width: 26px;
+    height: 96px;
+}
+
 .bw-profile-card {
     position: absolute;
     left: calc(100% + 18px);

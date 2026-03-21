@@ -1,5 +1,7 @@
 <?php
 
+use App\Core\Middleware\AuthMiddleware;
+use App\Core\Route;
 use App\Core\Router;
 use Dotenv\Dotenv;
 
@@ -12,6 +14,10 @@ define('BASE_URL', 'http://localhost:8000');
 |--------------------------------------------------------------------------
 */
 require BASE_PATH . '/vendor/autoload.php';
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +64,9 @@ $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 |--------------------------------------------------------------------------
 */
 $router = new Router();
+$router->registerMiddleware('auth', AuthMiddleware::class);
+
+Route::setRouter($router);
 
 /*
 |--------------------------------------------------------------------------
