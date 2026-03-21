@@ -1,7 +1,7 @@
 <aside class="bw-sidebar">
     <div class="bw-sidebar-top">
         <a href="#" class="bw-sidebar-logo">
-            G
+            M
         </a>
     </div>
 

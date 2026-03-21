@@ -1,3 +1,36 @@
+<?php
+$books = [
+    [
+        'title' => 'Flight from the Dark',
+        'author' => 'Joe Dever',
+        'author_age' => '52 anos',
+        'author_bio' => 'Autor veterano de fantasia interativa, conhecido por aventuras com escolhas taticas e universos expansivos.',
+        'cover' => 'https://images.unsplash.com/photo-1519608487953-e999c86e7455?q=80&w=900&auto=format&fit=crop',
+        'badge' => null,
+        'description' => 'Uma jornada de sobrevivencia por terras devastadas, onde cada decisao molda o destino do heroi e de todo o reino.',
+        'stats' => [
+            ['icon' => 'bi-eye', 'label' => '12.4k views'],
+            ['icon' => 'bi-download', 'label' => '3.1k downloads'],
+            ['icon' => 'bi-star', 'label' => '4.8 rating'],
+        ],
+    ],
+    [
+        'title' => 'Echoes of the Void',
+        'author' => 'Jaxon Pryde',
+        'author_age' => '34 anos',
+        'author_bio' => 'Escritor de ficcao cientifica com foco em suspense espacial, IA e dilemas morais em ambientes hostis.',
+        'cover' => 'https://images.unsplash.com/photo-1502134249126-9f3755a50d78?q=80&w=900&auto=format&fit=crop',
+        'badge' => null,
+        'description' => 'Uma tripulacao perdida no vazio descobre um sinal impossivel e mergulha em uma trama sobre memoria, tempo e sacrificio.',
+        'stats' => [
+            ['icon' => 'bi-eye', 'label' => '8.9k views'],
+            ['icon' => 'bi-download', 'label' => '2.4k downloads'],
+            ['icon' => 'bi-chat-left-text', 'label' => '186 comments'],
+        ],
+    ],
+];
+?>
+
 <?php section('title'); ?>
     My Books
 <?php endsection(); ?>
@@ -10,59 +43,91 @@
         </div>
 
         <div class="bw-book-grid">
-            <article class="bw-book-card">
-                <div class="bw-book-cover">
-                    <img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?q=80&w=900&auto=format&fit=crop" alt="Flight from the Dark">
-                </div>
+            <?php foreach ($books as $book): ?>
+                <?php
+                $statsJson = htmlspecialchars(json_encode($book['stats']), ENT_QUOTES, 'UTF-8');
+                $description = htmlspecialchars($book['description'], ENT_QUOTES, 'UTF-8');
+                $authorBio = htmlspecialchars($book['author_bio'], ENT_QUOTES, 'UTF-8');
+                ?>
+                <article
+                    class="bw-book-card"
+                    role="button"
+                    tabindex="0"
+                    data-book-title="<?= htmlspecialchars($book['title'], ENT_QUOTES, 'UTF-8') ?>"
+                    data-book-author="<?= htmlspecialchars($book['author'], ENT_QUOTES, 'UTF-8') ?>"
+                    data-book-author-age="<?= htmlspecialchars($book['author_age'], ENT_QUOTES, 'UTF-8') ?>"
+                    data-book-author-bio="<?= $authorBio ?>"
+                    data-book-description="<?= $description ?>"
+                    data-book-cover="<?= htmlspecialchars($book['cover'], ENT_QUOTES, 'UTF-8') ?>"
+                    data-book-stats="<?= $statsJson ?>"
+                >
+                    <div class="bw-book-cover">
+                        <?php if (!empty($book['badge'])): ?>
+                            <span class="bw-book-badge"><?= htmlspecialchars($book['badge']) ?></span>
+                        <?php endif; ?>
 
-                <span class="bw-book-author">Joe Dever</span>
-                <h3 class="bw-book-name">Flight from the Dark</h3>
+                        <img src="<?= htmlspecialchars($book['cover'], ENT_QUOTES, 'UTF-8') ?>" alt="<?= htmlspecialchars($book['title'], ENT_QUOTES, 'UTF-8') ?>">
 
-                <div class="bw-book-stats">
-                    <span class="bw-book-stat">
-                        <i class="bi bi-eye"></i>
-                        12.4k views
-                    </span>
+                        <div class="bw-book-cover-overlay">
+                            <span class="bw-book-overlay-label">Autor</span>
+                            <h4 class="bw-book-overlay-name"><?= htmlspecialchars($book['author']) ?></h4>
+                            <span class="bw-book-overlay-age"><?= htmlspecialchars($book['author_age']) ?></span>
+                            <p class="bw-book-overlay-bio"><?= htmlspecialchars($book['author_bio']) ?></p>
+                            <span class="bw-book-overlay-link">Ver mais sobre o autor <i class="bi bi-arrow-right"></i></span>
+                        </div>
+                    </div>
 
-                    <span class="bw-book-stat">
-                        <i class="bi bi-download"></i>
-                        3.1k downloads
-                    </span>
+                    <span class="bw-book-author"><?= htmlspecialchars($book['author']) ?></span>
+                    <h3 class="bw-book-name"><?= htmlspecialchars($book['title']) ?></h3>
 
-                    <span class="bw-book-stat">
-                        <i class="bi bi-star"></i>
-                        4.8 rating
-                    </span>
-                </div>
-            </article>
-
-            <article class="bw-book-card">
-                <div class="bw-book-cover">
-                    <img src="https://images.unsplash.com/photo-1502134249126-9f3755a50d78?q=80&w=900&auto=format&fit=crop" alt="Echoes of the Void">
-                </div>
-
-                <span class="bw-book-author">Jaxon Pryde</span>
-                <h3 class="bw-book-name">Echoes of the Void</h3>
-
-                <div class="bw-book-stats">
-                    <span class="bw-book-stat">
-                        <i class="bi bi-eye"></i>
-                        8.9k views
-                    </span>
-
-                    <span class="bw-book-stat">
-                        <i class="bi bi-download"></i>
-                        2.4k downloads
-                    </span>
-
-                    <span class="bw-book-stat">
-                        <i class="bi bi-chat-left-text"></i>
-                        186 comments
-                    </span>
-                </div>
-            </article>
+                    <div class="bw-book-stats">
+                        <?php foreach ($book['stats'] as $stat): ?>
+                            <span class="bw-book-stat"><i class="bi <?= htmlspecialchars($stat['icon']) ?>"></i> <?= htmlspecialchars($stat['label']) ?></span>
+                        <?php endforeach; ?>
+                    </div>
+                </article>
+            <?php endforeach; ?>
         </div>
     </section>
+
+    <div class="modal fade bw-book-modal" id="bwBookDetailModal" tabindex="-1" aria-labelledby="bwBookDetailModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <span class="bw-book-modal-kicker">Descricao</span>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="bw-book-modal-layout">
+                        <div class="bw-book-modal-cover-column">
+                            <div class="bw-book-modal-cover-wrap">
+                                <img id="bwBookModalCover" src="" alt="" class="bw-book-modal-cover">
+                            </div>
+
+                            <div class="bw-book-modal-author-card">
+                                <span class="bw-book-modal-author-label">Autor</span>
+                                <strong id="bwBookModalAuthorName"></strong>
+                                <span id="bwBookModalAuthorAge" class="bw-book-modal-author-age"></span>
+                                <p id="bwBookModalAuthorBio" class="bw-book-modal-author-bio mb-0"></p>
+                            </div>
+                        </div>
+
+                        <div class="bw-book-modal-content-column">
+                            <span class="bw-book-modal-author" id="bwBookModalAuthor"></span>
+                            <h2 class="bw-book-modal-title" id="bwBookDetailModalLabel"></h2>
+                            <p class="bw-book-modal-description" id="bwBookModalDescription"></p>
+
+                            <div class="bw-book-modal-stats">
+                                <h3 class="bw-book-modal-stats-title">Estatisticas</h3>
+                                <div class="bw-book-modal-stats-grid" id="bwBookModalStats"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 <?php endsection(); ?>
 
 <?php push('scripts'); ?>
