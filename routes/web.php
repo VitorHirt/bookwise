@@ -4,6 +4,7 @@ use App\Controllers\Auth\LoginController;
 use App\Controllers\Client\BookController;
 use App\Controllers\Client\FavoriteController;
 use App\Controllers\Client\HomeController;
+use App\Controllers\Client\FinishedController;
 use App\Core\Auth;
 use App\Core\Route;
 
@@ -14,7 +15,6 @@ Route::fallback(function () {
 });
 
 Route::prefix("client")->group(function () {
-
     Route::prefix("home")->group(function () {
         Route::get('/', [HomeController::class, 'index'])->name('client.home');
     });
@@ -24,7 +24,10 @@ Route::prefix("client")->group(function () {
     });
 
     Route::prefix("favorite")->group(function () {
-        Route::middleware('auth')->get('/', [FavoriteController::class, 'index'])->name('client.favorite');
+        Route::get('/', [FavoriteController::class, 'index'])->name('client.favorite');
     });
 
+    Route::prefix("finished")->group(function () {
+        Route::get('/', [FinishedController::class, 'index'])->name('client.finished');
+    });
 });

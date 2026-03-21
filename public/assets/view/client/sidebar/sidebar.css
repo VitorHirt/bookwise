@@ -106,17 +106,21 @@
     display: block;
 }
 
-.bw-sidebar-profile {
+.bw-sidebar-flyout {
     position: relative;
 }
 
-.bw-sidebar-profile::after {
+.bw-sidebar-flyout::after {
     content: "";
     position: absolute;
     left: 100%;
     bottom: -18px;
     width: 26px;
     height: 96px;
+}
+
+.bw-sidebar-profile {
+    position: relative;
 }
 
 .bw-profile-card {
@@ -142,15 +146,39 @@
     z-index: 1200;
 }
 
-.bw-sidebar-profile:hover .bw-profile-card,
-.bw-sidebar-profile.is-open .bw-profile-card,
-.bw-sidebar-profile:focus-within .bw-profile-card {
+.bw-filter-card {
+    position: absolute;
+    left: calc(100% + 25px);
+    bottom: -32px;
+    width: 320px;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015)),
+        rgba(10, 10, 10, 0.96);
+    color: #f2f2f2;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.42);
+    backdrop-filter: blur(12px);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-8px) scale(0.98);
+    transform-origin: left bottom;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1200;
+}
+
+.bw-sidebar-flyout:hover [data-flyout-panel],
+.bw-sidebar-flyout.is-open [data-flyout-panel],
+.bw-sidebar-flyout:focus-within [data-flyout-panel] {
     opacity: 1;
     visibility: visible;
     transform: translateX(0) scale(1);
     pointer-events: auto;
 }
 
+.bw-filter-card::before,
 .bw-profile-card::before {
     content: "";
     position: absolute;
@@ -162,6 +190,141 @@
     border-left: 1px solid rgba(255, 255, 255, 0.08);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     transform: rotate(45deg);
+}
+
+.bw-filter-card-header {
+    padding: 20px 20px 18px;
+}
+
+.bw-filter-card-kicker {
+    display: inline-flex;
+    margin-bottom: 8px;
+    color: #d6df79;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.bw-filter-card-title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.bw-filter-card-text {
+    margin: 8px 0 0;
+    color: #a0a0a0;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.bw-filter-card-section {
+    padding: 16px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: grid;
+    gap: 12px;
+}
+
+.bw-filter-label {
+    color: #d6df79;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.bw-filter-input-wrap {
+    position: relative;
+}
+
+.bw-filter-input-wrap i {
+    position: absolute;
+    top: 50%;
+    left: 14px;
+    transform: translateY(-50%);
+    color: #9d9d9d;
+    font-size: 14px;
+}
+
+.bw-filter-input {
+    width: 100%;
+    height: 44px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    color: #f4f4f4;
+    padding: 0 14px 0 40px;
+    outline: none;
+    transition: border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+}
+
+.bw-filter-date-input {
+    padding-left: 14px;
+}
+
+.bw-filter-input:focus {
+    border-color: rgba(214, 223, 121, 0.44);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 0 4px rgba(214, 223, 121, 0.08);
+}
+
+.bw-filter-check {
+    min-height: 42px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    background: rgba(255, 255, 255, 0.02);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #efefef;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.bw-filter-check input {
+    width: 15px;
+    height: 15px;
+    accent-color: #d6df79;
+}
+
+.bw-filter-card-footer {
+    padding: 16px 20px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    gap: 10px;
+}
+
+.bw-filter-btn {
+    flex: 1;
+    height: 42px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: 0.18s ease;
+}
+
+.bw-filter-btn-ghost {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+    color: #efefef;
+}
+
+.bw-filter-btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.bw-filter-btn-primary {
+    border: 1px solid rgba(214, 223, 121, 0.24);
+    background: rgba(214, 223, 121, 0.14);
+    color: #d6df79;
+}
+
+.bw-filter-btn-primary:hover {
+    background: rgba(214, 223, 121, 0.2);
 }
 
 .bw-profile-card-header {
