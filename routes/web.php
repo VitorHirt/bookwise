@@ -5,6 +5,9 @@ use App\Controllers\Client\BookController;
 use App\Controllers\Client\FavoriteController;
 use App\Controllers\Client\HomeController;
 use App\Controllers\Client\FinishedController;
+
+use App\Controllers\Admin\DashboardController;
+
 use App\Core\Auth;
 use App\Core\Route;
 
@@ -30,4 +33,12 @@ Route::prefix("client")->group(function () {
     Route::prefix("finished")->group(function () {
         Route::get('/', [FinishedController::class, 'index'])->name('client.finished');
     });
+});
+
+Route::prefix("admin")->group(function () {
+
+    Route::prefix("dashboard")->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
+    });
+
 });
