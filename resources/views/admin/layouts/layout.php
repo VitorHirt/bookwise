@@ -23,11 +23,13 @@
         <?php stack('styles'); ?>
     </head>
 
-    <body>
+    <body class="bw-admin-layout">
         <?php includeView('admin/layouts/partial/sidebar.php'); ?>
 
-        <main class="bw-main-content">
-            <?php yieldSection('content'); ?>
+        <main class="bw-main-content bw-admin-main-content">
+            <div class="bw-admin-container">
+                <?php yieldSection('content'); ?>
+            </div>
         </main>
 
         <?php yieldSection('drawer'); ?>

@@ -1,7 +1,7 @@
 <aside class="bw-sidebar">
     <div class="bw-sidebar-top">
-        <a href="<?= route('admin.dashboard') ?>" class="bw-sidebar-logo" title="Admin Dashboard">
-            A
+        <a href="<?= route('admin.dashboard') ?>" class="bw-sidebar-brand" title="Admin Dashboard">
+            <span class="bw-sidebar-logo">A</span>
         </a>
     </div>
 
@@ -18,10 +18,10 @@
             <i class="bi bi-bookmark-star"></i>
         </button>
 
-        <button type="button" class="bw-sidebar-link bw-sidebar-action" title="Catalogo">
+        <button type="button" class="bw-sidebar-link bw-sidebar-action" title="Relatorios">
             <i class="bi bi-journal-check"></i>
         </button>
-        
+
         <button type="button" class="bw-sidebar-link bw-sidebar-action" title="Configuracoes">
             <i class="bi bi-sliders2"></i>
         </button>
@@ -80,8 +80,10 @@
         </button>
 
         <div class="bw-sidebar-profile bw-sidebar-flyout" data-flyout-card>
-            <a href="#" class="bw-sidebar-avatar" title="Perfil" data-profile-trigger>
-                <img src="https://i.pravatar.cc/80?img=12" alt="Avatar do usuário">
+            <a href="#" class="bw-sidebar-account" title="Perfil" data-profile-trigger>
+                <span class="bw-sidebar-avatar">
+                    <img src="https://i.pravatar.cc/80?img=12" alt="Avatar do usuário">
+                </span>
             </a>
 
             <div class="bw-profile-card" data-flyout-panel>
