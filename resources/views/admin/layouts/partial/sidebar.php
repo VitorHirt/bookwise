@@ -10,21 +10,21 @@
             <i class="bi bi-grid-1x2-fill"></i>
         </a>
 
-        <button type="button" class="bw-sidebar-link bw-sidebar-action" title="Usuarios">
-            <i class="bi bi-journal-plus"></i>
-        </button>
+        <a href="<?= route('admin.book') ?>" class="bw-sidebar-link <?= route_is('admin.book*') ? 'active' : '' ?>" title="Livros">
+            <i class="bi bi-book"></i>
+        </a>
 
-        <button type="button" class="bw-sidebar-link bw-sidebar-action" title="Catalogo">
-            <i class="bi bi-bookmark-star"></i>
-        </button>
+        <a href="<?= route('admin.saveBook') ?>" class="bw-sidebar-link <?= route_is('admin.saveBook*') ? 'active' : '' ?>" title="Salvos">
+            <i class="bi bi-bookmark-plus"></i>
+        </a>
 
-        <button type="button" class="bw-sidebar-link bw-sidebar-action" title="Relatorios">
+        <a href="<?= route('admin.finished') ?>" class="bw-sidebar-link <?= route_is('admin.finished*') ? 'active' : '' ?>" title="Finalizados">
             <i class="bi bi-journal-check"></i>
-        </button>
+        </a>
 
-        <button type="button" class="bw-sidebar-link bw-sidebar-action" title="Configuracoes">
+        <a href="<?= route('admin.settings') ?>" class="bw-sidebar-link <?= route_is('admin.settings') ? 'active' : '' ?>" title="Configuracoes">
             <i class="bi bi-sliders2"></i>
-        </button>
+        </a>
     </div>
 
     <div class="bw-sidebar-bottom">

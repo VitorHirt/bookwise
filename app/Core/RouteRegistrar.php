@@ -42,6 +42,18 @@ class RouteRegistrar {
         });
     }
 
+    public function put(string $uri, array $action): RouteDefinition {
+        return $this->captureRouteDefinition(function () use ($uri, $action): RouteDefinition {
+            return $this->router->put($uri, $action);
+        });
+    }
+
+    public function delete(string $uri, array $action): RouteDefinition {
+        return $this->captureRouteDefinition(function () use ($uri, $action): RouteDefinition {
+            return $this->router->delete($uri, $action);
+        });
+    }
+
     private function captureRouteDefinition(callable $callback): RouteDefinition {
         $route = null;
 

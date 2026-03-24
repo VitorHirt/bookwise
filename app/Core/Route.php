@@ -19,6 +19,14 @@ class Route {
         return self::router()->post($uri, $action);
     }
 
+    public static function put(string $uri, array $action): RouteDefinition {
+        return self::router()->put($uri, $action);
+    }
+
+    public static function delete(string $uri, array $action): RouteDefinition {
+        return self::router()->delete($uri, $action);
+    }
+
     public static function prefix(string $prefix): RouteRegistrar {
         return self::router()->prefix($prefix);
     }

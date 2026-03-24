@@ -6,6 +6,8 @@ use Closure;
 use RuntimeException;
 
 class Router {
+    private const METHOD_OVERRIDE_KEY = '_method';
+
     private array $routes = [];
     private array $groupStack = [];
     private array $middlewareAliases = [];
@@ -19,6 +21,14 @@ class Router {
 
     public function post(string $uri, array $action): RouteDefinition {
         return $this->addRoute('POST', $uri, $action);
+    }
+
+    public function put(string $uri, array $action): RouteDefinition {
+        return $this->addRoute('PUT', $uri, $action);
+    }
+
+    public function delete(string $uri, array $action): RouteDefinition {
+        return $this->addRoute('DELETE', $uri, $action);
     }
 
     public function prefix(string $prefix): RouteRegistrar {
@@ -48,10 +58,9 @@ class Router {
     }
 
     public function dispatch(): void {
-        $httpMethod = $_SERVER['REQUEST_METHOD'] ?? 'GET';
+        $httpMethod = $this->resolveHttpMethod();
         $uri = $this->normalizeUri(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/');
-
-        $route = $this->routes[$httpMethod][$uri] ?? null;
+        [$route, $routeParameters, $matchedUri] = $this->matchRoute($httpMethod, $uri);
 
         if ($route === null) {
             if ($this->fallbackAction !== null) {
@@ -66,14 +75,14 @@ class Router {
 
         $this->currentRoute = [
             'method' => $httpMethod,
-            'uri' => $uri,
+            'uri' => $matchedUri,
             'name' => $route['name'],
         ];
 
         $this->runMiddlewares(
             $route['middleware'],
-            function () use ($route): void {
-                $this->invokeAction($route['action']);
+            function () use ($route, $routeParameters): void {
+                $this->invokeAction($route['action'], $routeParameters);
             }
         );
     }
@@ -186,6 +195,80 @@ class Router {
         return '/' . trim($uri, '/');
     }
 
+    private function matchRoute(string $httpMethod, string $uri): array {
+        $routes = $this->routes[$httpMethod] ?? [];
+
+        if (isset($routes[$uri])) {
+            return [$routes[$uri], [], $uri];
+        }
+
+        foreach ($routes as $registeredUri => $route) {
+            $parameters = $this->extractRouteParameters($registeredUri, $uri);
+
+            if ($parameters !== null) {
+                return [$route, $parameters, $registeredUri];
+            }
+        }
+
+        return [null, [], null];
+    }
+
+    private function extractRouteParameters(string $registeredUri, string $requestedUri): ?array {
+        if (!str_contains($registeredUri, '{')) {
+            return null;
+        }
+
+        $parameterNames = [];
+        $pattern = preg_replace_callback(
+            '/\{([^}]+)\}/',
+            function (array $matches) use (&$parameterNames): string {
+                $parameterNames[] = $matches[1];
+
+                return '___BW_ROUTE_PARAMETER___';
+            },
+            $registeredUri
+        );
+
+        if (!is_string($pattern)) {
+            return null;
+        }
+
+        $pattern = preg_quote($pattern, '/');
+        $pattern = str_replace('___BW_ROUTE_PARAMETER___', '([^/]+)', $pattern);
+
+        $matched = preg_match('/^' . $pattern . '$/', $requestedUri, $matches);
+
+        if ($matched !== 1) {
+            return null;
+        }
+
+        array_shift($matches);
+
+        return array_combine($parameterNames, $matches) ?: [];
+    }
+
+    private function resolveHttpMethod(): string {
+        $method = strtoupper($_SERVER['REQUEST_METHOD'] ?? 'GET');
+
+        if ($method !== 'POST') {
+            return $method;
+        }
+
+        $overriddenMethod = $_POST[self::METHOD_OVERRIDE_KEY]
+            ?? $_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE']
+            ?? null;
+
+        if (!is_string($overriddenMethod) || $overriddenMethod === '') {
+            return $method;
+        }
+
+        $overriddenMethod = strtoupper(trim($overriddenMethod));
+
+        return in_array($overriddenMethod, ['PUT', 'DELETE'], true)
+            ? $overriddenMethod
+            : $method;
+    }
+
     private function runMiddlewares(array $middlewares, Closure $destination): void {
         $pipeline = array_reduce(
             array_reverse($middlewares),
@@ -221,9 +304,9 @@ class Router {
         return $this->middlewareAliases[$middleware];
     }
 
-    private function invokeAction(array|callable $action): mixed {
+    private function invokeAction(array|callable $action, array $routeParameters = []): mixed {
         if (is_callable($action) && !is_array($action)) {
-            return $action();
+            return $action(...array_values($routeParameters));
         }
 
         if (is_array($action) && count($action) === 2) {
@@ -231,7 +314,7 @@ class Router {
 
             $instance = new $controller();
 
-            return $instance->$actionMethod();
+            return $instance->$actionMethod(...array_values($routeParameters));
         }
 
         throw new RuntimeException('Acao de rota invalida.');

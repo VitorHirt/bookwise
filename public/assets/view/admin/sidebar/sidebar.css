@@ -1,13 +1,13 @@
 :root {
-    --bw-admin-sidebar-bg: rgba(16, 18, 19, 0.56);
-    --bw-admin-sidebar-surface: rgba(24, 27, 28, 0.34);
-    --bw-admin-sidebar-surface-strong: rgba(255, 255, 255, 0.08);
-    --bw-admin-sidebar-accent: #96C045;
-    --bw-admin-sidebar-accent-soft: rgba(150, 192, 69, 0.14);
-    --bw-admin-sidebar-accent-border: rgba(150, 192, 69, 0.32);
-    --bw-admin-sidebar-text: rgba(255, 255, 255, 0.88);
-    --bw-admin-sidebar-muted: rgba(255, 255, 255, 0.6);
-    --bw-admin-sidebar-line: rgba(255, 255, 255, 0.09);
+    --bw-admin-sidebar-bg: #2b303b;
+    --bw-admin-sidebar-surface: #343b48;
+    --bw-admin-sidebar-surface-strong: #3b4252;
+    --bw-admin-sidebar-accent: #88c0d0;
+    --bw-admin-sidebar-accent-soft: rgba(136, 192, 208, 0.16);
+    --bw-admin-sidebar-accent-border: rgba(129, 161, 193, 0.42);
+    --bw-admin-sidebar-text: rgba(236, 239, 244, 0.94);
+    --bw-admin-sidebar-muted: rgba(216, 222, 233, 0.7);
+    --bw-admin-sidebar-line: rgba(216, 222, 233, 0.12);
 }
 
 .bw-admin-layout {
@@ -18,11 +18,12 @@
     width: var(--bw-sidebar-width);
     padding: 10px 8px 12px;
     align-items: center;
+    background: linear-gradient(180deg, #2e3440 0%, #242933 100%);
     border-right: 1px solid var(--bw-admin-sidebar-line);
-    box-shadow: 14px 0 36px rgba(0, 0, 0, 0.18);
-    opacity: 0.9;
-    backdrop-filter: blur(24px) saturate(140%);
-    -webkit-backdrop-filter: blur(24px) saturate(140%);
+    box-shadow: 14px 0 36px rgba(15, 17, 21, 0.34);
+    opacity: 1;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
 }
 
 .bw-sidebar::before {
@@ -30,13 +31,13 @@
     position: absolute;
     inset: 0;
     background:
-        radial-gradient(circle at top center, rgba(150, 192, 69, 0.2), transparent 34%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0));
+        radial-gradient(circle at top center, rgba(143, 188, 187, 0.18), transparent 34%),
+        linear-gradient(180deg, rgba(236, 239, 244, 0.05), rgba(236, 239, 244, 0));
     pointer-events: none;
 }
 
 .bw-sidebar::after {
-    background: linear-gradient(180deg, rgba(150, 192, 69, 0.16), rgba(255, 255, 255, 0.05));
+    background: linear-gradient(180deg, rgba(129, 161, 193, 0.14), rgba(236, 239, 244, 0.03));
 }
 
 .bw-sidebar-top,
@@ -64,14 +65,14 @@
     width: 38px;
     height: 38px;
     border-radius: 12px;
-    background: linear-gradient(180deg, #a8d84f, var(--bw-admin-sidebar-accent));
-    color: #101213;
+    background: linear-gradient(180deg, #a3d5df, var(--bw-admin-sidebar-accent));
+    color: #2e3440;
     font-size: 22px;
     font-weight: 800;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 14px 28px rgba(150, 192, 69, 0.22);
+    box-shadow: 0 14px 28px rgba(94, 129, 172, 0.22);
 }
 
 .bw-sidebar-link,
@@ -105,7 +106,7 @@
 .bw-sidebar-link:hover,
 .bw-sidebar-account:hover {
     background: var(--bw-admin-sidebar-surface);
-    border-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(216, 222, 233, 0.08);
     transform: translateY(-1px);
 }
 
@@ -115,12 +116,12 @@
 
 .bw-sidebar-link.active {
     background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.015)),
+        linear-gradient(180deg, rgba(236, 239, 244, 0.05), rgba(236, 239, 244, 0.02)),
         var(--bw-admin-sidebar-accent-soft);
     border-color: var(--bw-admin-sidebar-accent-border);
     box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.04),
-        0 10px 24px rgba(0, 0, 0, 0.18);
+        inset 0 1px 0 rgba(236, 239, 244, 0.05),
+        0 10px 24px rgba(15, 17, 21, 0.24);
 }
 
 .bw-sidebar-link.active i {
@@ -135,8 +136,8 @@
     width: 4px;
     height: calc(100% - 20px);
     border-radius: 999px;
-    background: linear-gradient(180deg, #b4dd5d, var(--bw-admin-sidebar-accent));
-    box-shadow: 0 0 14px rgba(150, 192, 69, 0.42);
+    background: linear-gradient(180deg, #b7e1ea, var(--bw-admin-sidebar-accent));
+    box-shadow: 0 0 14px rgba(136, 192, 208, 0.34);
 }
 
 .bw-sidebar-flyout {
@@ -162,8 +163,8 @@
     border-radius: 14px;
     overflow: hidden;
     display: inline-flex;
-    border: 1px solid rgba(150, 192, 69, 0.24);
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+    border: 1px solid rgba(129, 161, 193, 0.26);
+    box-shadow: 0 10px 24px rgba(15, 17, 21, 0.24);
 }
 
 .bw-sidebar-avatar img {
@@ -177,7 +178,7 @@
     width: 56px;
     min-height: 56px;
     background: var(--bw-admin-sidebar-surface);
-    border-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(216, 222, 233, 0.08);
 }
 
 .bw-filter-card,
@@ -185,19 +186,19 @@
     left: calc(100% + 16px);
     width: 320px;
     background:
-        linear-gradient(180deg, rgba(150, 192, 69, 0.08), rgba(255, 255, 255, 0.025)),
-        rgba(16, 18, 19, 0.68);
+        linear-gradient(180deg, rgba(129, 161, 193, 0.12), rgba(236, 239, 244, 0.02)),
+        #2e3440;
     color: var(--bw-admin-sidebar-text);
     border: 1px solid var(--bw-admin-sidebar-line);
     border-radius: 22px;
-    box-shadow: 0 28px 50px rgba(0, 0, 0, 0.28);
-    backdrop-filter: blur(28px) saturate(140%);
-    -webkit-backdrop-filter: blur(28px) saturate(140%);
+    box-shadow: 0 28px 50px rgba(15, 17, 21, 0.34);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
 }
 
 .bw-filter-card::before,
 .bw-profile-card::before {
-    background: rgba(16, 18, 19, 0.74);
+    background: #2e3440;
     border-left-color: var(--bw-admin-sidebar-line);
     border-bottom-color: var(--bw-admin-sidebar-line);
 }
@@ -249,7 +250,7 @@
 .bw-filter-input:focus {
     border-color: var(--bw-admin-sidebar-accent-border);
     background: var(--bw-admin-sidebar-surface-strong);
-    box-shadow: 0 0 0 4px rgba(150, 192, 69, 0.1);
+    box-shadow: 0 0 0 4px rgba(136, 192, 208, 0.14);
 }
 
 .bw-filter-check input {
@@ -272,26 +273,26 @@
 }
 
 .bw-filter-btn-primary:hover {
-    background: rgba(150, 192, 69, 0.22);
+    background: rgba(136, 192, 208, 0.2);
 }
 
 .bw-profile-card-link:hover {
-    background: rgba(150, 192, 69, 0.08);
+    background: rgba(129, 161, 193, 0.14);
 }
 
 .bw-notification-drawer {
     background:
-        linear-gradient(180deg, rgba(150, 192, 69, 0.08), rgba(16, 18, 19, 0)),
-        rgba(16, 18, 19, 0.78);
+        linear-gradient(180deg, rgba(129, 161, 193, 0.12), rgba(46, 52, 64, 0)),
+        #2e3440;
     border-left-color: var(--bw-admin-sidebar-line);
-    backdrop-filter: blur(24px) saturate(140%);
-    -webkit-backdrop-filter: blur(24px) saturate(140%);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
 }
 
 .bw-notification-card {
     background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015)),
-        rgba(255, 255, 255, 0.03);
+        linear-gradient(180deg, rgba(236, 239, 244, 0.04), rgba(236, 239, 244, 0.015)),
+        rgba(59, 66, 82, 0.92);
 }
 
 .bw-notification-card:hover {
@@ -299,6 +300,6 @@
 }
 
 .bw-notification-card.is-new {
-    border-color: rgba(150, 192, 69, 0.26);
-    box-shadow: inset 0 0 0 1px rgba(150, 192, 69, 0.07);
+    border-color: rgba(136, 192, 208, 0.3);
+    box-shadow: inset 0 0 0 1px rgba(136, 192, 208, 0.08);
 }
