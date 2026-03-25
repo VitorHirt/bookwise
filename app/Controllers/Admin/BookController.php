@@ -2,6 +2,8 @@
 
 namespace App\Controllers\Admin;
 
+use App\Services\Admin\BookDataTableService;
+
 class BookController {
     public function index(): void {
         view('book/book', 'admin', [], 'layouts.layout');
@@ -9,8 +11,16 @@ class BookController {
 
     // GET
 
+    public function dataTables(): void {
+        header('Content-Type: application/json; charset=UTF-8');
+
+        $service = new BookDataTableService();
+
+        echo json_encode($service->handle($_GET), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    }
+
     public function create(): void {
-        view('book/create', 'admin', [], 'layouts.layout');
+        view('book/show/create', 'admin', [], 'layouts.layout');
     }
 
     public function edit(string $id): void {

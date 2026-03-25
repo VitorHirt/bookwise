@@ -46,6 +46,7 @@ Route::prefix("admin")->group(function () {
 
     Route::prefix("book")->group(function () {
         Route::get('/', [AdminBookController::class, 'index'])->name('admin.book');
+        Route::get('/dataTables', [AdminBookController::class, 'dataTables'])->name('admin.book.dataTables');
         Route::get('/create', [AdminBookController::class, 'create'])->name('admin.book.create');
         Route::get('/edit/{id}', [AdminBookController::class, 'edit'])->name('admin.book.edit');
         Route::post('/store/{id}', [AdminBookController::class, 'store'])->name('admin.book.store');

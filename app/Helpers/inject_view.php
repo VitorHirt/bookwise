@@ -2,6 +2,32 @@
 
 use App\Core\View;
 
+if (!function_exists('dump_value')) {
+    function dump_value(mixed $value): void {
+        if (PHP_SAPI !== 'cli') {
+            echo '<pre style="margin:0;padding:16px;background:#111;color:#f5f5f5;border:1px solid #333;border-radius:12px;overflow:auto;">';
+        }
+
+        var_dump($value);
+
+        if (PHP_SAPI !== 'cli') {
+            echo '</pre>';
+        }
+    }
+}
+
+if (!function_exists('dd')) {
+    function dd(mixed ...$values): never {
+        http_response_code(500);
+
+        foreach ($values as $value) {
+            dump_value($value);
+        }
+
+        exit(1);
+    }
+}
+
 /* Sections */
 function section(string $name): void {
     View::start($name);
