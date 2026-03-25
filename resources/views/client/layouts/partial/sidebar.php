@@ -70,11 +70,6 @@
             </div>
         </div>
 
-        <button type="button" class="bw-sidebar-link bw-sidebar-action" title="Notifications" data-bs-toggle="offcanvas" data-bs-target="#bwNotificationsDrawer" aria-controls="bwNotificationsDrawer">
-            <i class="bi bi-bell"></i>
-            <span class="bw-sidebar-dot">3</span>
-        </button>
-
         <div class="bw-sidebar-profile bw-sidebar-flyout" data-flyout-card>
             <a href="#" class="bw-sidebar-avatar" title="Perfil" data-profile-trigger>
                 <img src="https://i.pravatar.cc/80?img=12" alt="Avatar do usuário">
@@ -123,88 +118,6 @@
         </div>
     </div>
 </aside>
-
-<?php section('drawer'); ?>
-    <div class="offcanvas offcanvas-end bw-notification-drawer" tabindex="-1" id="bwNotificationsDrawer" aria-labelledby="bwNotificationsDrawerLabel">
-        <div class="offcanvas-header bw-notification-header">
-            <div>
-                <span class="bw-notification-kicker">Activity</span>
-                <h5 class="offcanvas-title bw-notification-title" id="bwNotificationsDrawerLabel">Notifications</h5>
-            </div>
-
-            <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-
-        <div class="offcanvas-body bw-notification-body">
-            <div class="bw-notification-toolbar">
-                <span class="bw-notification-counter">3 new updates</span>
-                <button type="button" class="bw-notification-clear" data-notification-clear>Mark all as read</button>
-            </div>
-
-            <div class="bw-notification-list">
-                <article class="bw-notification-card is-new">
-                    <div class="bw-notification-icon">
-                        <i class="bi bi-bookmark-heart"></i>
-                    </div>
-
-                    <div class="bw-notification-copy">
-                        <p class="bw-notification-text"><strong>Echoes of the Void</strong> reached 1.2k saves.</p>
-                        <span class="bw-notification-time">2 minutes ago</span>
-                    </div>
-
-                    <button type="button" class="bw-notification-dismiss" data-notification-dismiss aria-label="Dismiss notification">
-                        <i class="bi bi-x-lg"></i>
-                    </button>
-                </article>
-
-                <article class="bw-notification-card is-new">
-                    <div class="bw-notification-icon">
-                        <i class="bi bi-download"></i>
-                    </div>
-
-                    <div class="bw-notification-copy">
-                        <p class="bw-notification-text"><strong>Flight from the Dark</strong> got 250 new downloads today.</p>
-                        <span class="bw-notification-time">18 minutes ago</span>
-                    </div>
-
-                    <button type="button" class="bw-notification-dismiss" data-notification-dismiss aria-label="Dismiss notification">
-                        <i class="bi bi-x-lg"></i>
-                    </button>
-                </article>
-
-                <article class="bw-notification-card is-new">
-                    <div class="bw-notification-icon">
-                        <i class="bi bi-star"></i>
-                    </div>
-
-                    <div class="bw-notification-copy">
-                        <p class="bw-notification-text"><strong>Moonlit Tower</strong> received a new 5-star rating.</p>
-                        <span class="bw-notification-time">1 hour ago</span>
-                    </div>
-
-                    <button type="button" class="bw-notification-dismiss" data-notification-dismiss aria-label="Dismiss notification">
-                        <i class="bi bi-x-lg"></i>
-                    </button>
-                </article>
-
-                <article class="bw-notification-card">
-                    <div class="bw-notification-icon">
-                        <i class="bi bi-check2-circle"></i>
-                    </div>
-
-                    <div class="bw-notification-copy">
-                        <p class="bw-notification-text">Your last sync with the library completed successfully.</p>
-                        <span class="bw-notification-time">Yesterday</span>
-                    </div>
-
-                    <button type="button" class="bw-notification-dismiss" data-notification-dismiss aria-label="Dismiss notification">
-                        <i class="bi bi-x-lg"></i>
-                    </button>
-                </article>
-            </div>
-        </div>
-    </div>
-<?php endsection(); ?>
 
 <?php push('styles'); ?>
     <link rel="stylesheet" href="<?= asset('assets/view/client/sidebar/sidebar.css') ?>">

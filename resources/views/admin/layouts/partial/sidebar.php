@@ -28,52 +28,6 @@
     </div>
 
     <div class="bw-sidebar-bottom">
-        <div class="bw-sidebar-flyout" data-flyout-card>
-            <button type="button" class="bw-sidebar-link bw-sidebar-action" title="Search" data-flyout-trigger>
-                <i class="bi bi-search"></i>
-            </button>
-
-            <div class="bw-filter-card" data-flyout-panel>
-                <div class="bw-filter-card-header">
-                    <span class="bw-filter-card-kicker">Search</span>
-                    <h4 class="bw-filter-card-title">Filter library</h4>
-                    <p class="bw-filter-card-text">Ajuste os filtros visuais para encontrar conteudo mais rapido.</p>
-                </div>
-
-                <div class="bw-filter-card-section">
-                    <label class="bw-filter-label" for="bwFilterSearchName">Pesquisar por nome</label>
-                    <div class="bw-filter-input-wrap">
-                        <i class="bi bi-search"></i>
-                        <input type="text" id="bwFilterSearchName" class="bw-filter-input" placeholder="Digite o nome do livro">
-                    </div>
-                </div>
-
-                <div class="bw-filter-card-section">
-                    <span class="bw-filter-label">Status</span>
-
-                    <label class="bw-filter-check">
-                        <input type="checkbox">
-                        <span>Favoritos</span>
-                    </label>
-
-                    <label class="bw-filter-check">
-                        <input type="checkbox">
-                        <span>Finalizado</span>
-                    </label>
-                </div>
-
-                <div class="bw-filter-card-section">
-                    <label class="bw-filter-label" for="bwFilterDate">Data</label>
-                    <input type="date" id="bwFilterDate" class="bw-filter-input bw-filter-date-input">
-                </div>
-
-                <div class="bw-filter-card-footer">
-                    <button type="button" class="bw-filter-btn bw-filter-btn-ghost">Limpar</button>
-                    <button type="button" class="bw-filter-btn bw-filter-btn-primary">Aplicar</button>
-                </div>
-            </div>
-        </div>
-
         <button type="button" class="bw-sidebar-link bw-sidebar-action" title="Notifications" data-bs-toggle="offcanvas" data-bs-target="#bwNotificationsDrawer" aria-controls="bwNotificationsDrawer">
             <i class="bi bi-bell"></i>
             <span class="bw-sidebar-dot">3</span>
